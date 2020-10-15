@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/layout}">
+
+<head>
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+</head>
+
+<body>
+
+	<h1 class="m-0 text-dark" layout:fragment="titulo_seccion">Estudiante</h1>
+
+	<ol class="breadcrumb float-sm-right" layout:fragment="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">Estudiante</li>
+    </ol>
+
+	<div layout:fragment="content">
+
+    <div class="row ml-3 mr-3">
+			<div class="col-md-2"></div>
+			<div class="col-md-8 ">
+				<div class="card">
+	         <div class="card-header text-right">
+
+						<a th:href="@{/estudiante/create}" class="btn btn-sm btn-primary" title="Agregar Rango de Renta" id="add-tipo-unidad">
+							<i class="fas fa-plus-circle mr-1 text-white"></i>
+							<span class="text-white">Agregar Estudiante</span>
+						</a>
+	              <h3 class="card-title"></h3>
+	          </div>
+
+					<div class="card-body">
+						<table id="example1" class="table table-bordered table-striped">
+							<thead>
+                  <tr>
+                    <th>Carnet</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Año Ingreso</th>
+                    <th>Acciones</th>
+                  </tr>
+							</thead>
+							<tbody>
+
+								<tr th:each="estudiante : ${estudiantes}">
+                  <td th:text="${estudiante.carnet}"></td>
+                  <td th:text="${estudiante.nombre}"></td>
+                  <td th:text="${estudiante.apellido}"></td>
+                  <td th:text="${estudiante.anioIngreso}"></td>
+                  <td>
+                    <a class="btn btn-sm btn-primary" th:href="@{/estudiante/edit/{id_estudiante}(id_estudiante=${estudiante.id})}">
+                      <i class="fas fa-pencil-alt"></i>
+                    </a>
+                    <button class="btn btn-sm btn-danger" th:attr="data-eliminar=${estudiante.id}">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+								</tr>
+
+							</tbody>
+							<tfoot>
+								<tr>
+                  <tr>
+                    <th>Carnet</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Año Ingreso</th>
+                    <th>Acciones</th>
+                  </tr>
+                </tr>
+							</tfoot>
+						</table>
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</div>
+		</div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="modalEliminar">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Eliminar Estudiante</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <form method="POST" th:action="@{/estudiante/destroy}">
+        <div class="modal-body">
+          <input type="hidden" id="idEstudiante" name="idEstudiante" value>
+          <p>¿Desea eliminar el estudiante?</p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger">Confirmar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+	</div>
+
+
+	<section layout:fragment="scripts">
+    <script>
+      $('[data-eliminar]').on('click', function(){
+
+        var idEstudiante = $(this).data('eliminar');
+
+
+        $('#idEstudiante').val(idEstudiante);
+        $('#modalEliminar').modal('show');
+      })
+    </script>
+	</section>
+
+</body>
+</html>
