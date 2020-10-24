@@ -1,4 +1,4 @@
-package com.practica1.demo.service;
+package ues.induccion.demo.service.Impl;
 
 import java.util.List;
 
@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.practica1.demo.entity.Usuario;
-import com.practica1.demo.repository.UsuarioJpaRepository;
+import ues.induccion.demo.entity.Usuario;
+import ues.induccion.demo.repository.UsuarioJpaRepository;
+import ues.induccion.demo.service.UsuarioService;
 
 @Service("usuarioServiceImpl")
 public class UsuarioServiceImpl implements UsuarioService{

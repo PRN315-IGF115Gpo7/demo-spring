@@ -1,4 +1,4 @@
-package com.practica1.demo.entity;
+package ues.induccion.demo.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

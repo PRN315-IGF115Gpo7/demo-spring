@@ -1,4 +1,4 @@
-package com.practica1.demo;
+package ues.induccion.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

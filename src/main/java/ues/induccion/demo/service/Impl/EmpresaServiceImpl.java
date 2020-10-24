@@ -15,7 +15,8 @@ import ues.induccion.demo.service.EmpresaService;
 public class EmpresaServiceImpl implements EmpresaService{
 
 	@Autowired
-	@Qualifier("estudianteJpaRepository")
+//	@Qualifier("estudianteJpaRepository")
+	@Qualifier("empresaJpaRepository")
 	private EmpresaJpaRepository empresaJpaRepository;
 	
 	@Override

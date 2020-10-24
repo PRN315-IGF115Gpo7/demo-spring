@@ -7,8 +7,8 @@
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 7.0.13
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+/*SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";*/
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `empresa`
 --
-
+/*
 CREATE TABLE `empresa` (
   `id` varchar(100) NOT NULL,
   `nombre` varchar(150) DEFAULT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE `empresa` (
   `cantidad_empleados` int(10) DEFAULT NULL,
   `fecha_fundacion` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
+*/
 --
 -- Índices para tablas volcadas
 --
@@ -42,8 +42,8 @@ CREATE TABLE `empresa` (
 --
 -- Indices de la tabla `empresa`
 --
-ALTER TABLE `empresa`
-  ADD PRIMARY KEY (`id`);
+/*ALTER TABLE `empresa`
+  ADD PRIMARY KEY (`id`);*/
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

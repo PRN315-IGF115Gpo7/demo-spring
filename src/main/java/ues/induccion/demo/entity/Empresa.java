@@ -14,7 +14,7 @@ public class Empresa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
 	
-	@Column(name = "id", unique = true)
+//	@Column(name = "id", unique = true)
 	String nombre;
 	String telefono;
 	String direccion;

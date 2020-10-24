@@ -1,4 +1,4 @@
-package com.practica1.demo.controller;
+package ues.induccion.demo.controller;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.practica1.demo.entity.Usuario;
-import com.practica1.demo.service.UsuarioService;
+import ues.induccion.demo.entity.Usuario;
+import ues.induccion.demo.service.UsuarioService;
 
 @Controller
 @RequestMapping("/usuario")

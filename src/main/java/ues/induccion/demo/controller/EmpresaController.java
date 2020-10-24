@@ -17,7 +17,8 @@ import ues.induccion.demo.entity.Empresa;
 import ues.induccion.demo.service.EmpresaService;
 
 @Controller
-@RequestMapping("/estudiante")
+//@RequestMapping("/estudiante")
+@RequestMapping("/empresa")
 public class EmpresaController {
 
 	private static final String INDEX_VIEW = "empresa/index";
