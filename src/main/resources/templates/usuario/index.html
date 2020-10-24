@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/layout}">
+
+<head>
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+</head>
+
+<body>
+
+	<h1 class="m-0 text-dark" layout:fragment="titulo_seccion">Usuario</h1>
+
+	<ol class="breadcrumb float-sm-right" layout:fragment="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">Usuario</li>
+    </ol>
+
+	<div layout:fragment="content">
+
+    <div class="row ml-3 mr-3">
+			<div class="col-md-2"></div>
+			<div class="col-md-8 ">
+				<div class="card">
+	         <div class="card-header text-right">
+
+						<a th:href="@{/usuario/create}" class="btn btn-sm btn-primary" title="Agregar Rango de Renta" id="add-tipo-unidad">
+							<i class="fas fa-plus-circle mr-1 text-white"></i>
+							<span class="text-white">Agregar Usuario</span>
+						</a>
+	              <h3 class="card-title"></h3>
+	          </div>
+
+					<div class="card-body">
+						<table id="example1" class="table table-bordered table-striped">
+							<thead>
+                  <tr>
+                    <th>Usuario</th>
+                    <th>Contraseña</th>
+                    <th>Activo</th>
+                    <th>Intentos</th>
+                    <th>Acciones</th>
+                  </tr>
+							</thead>
+							<tbody>
+
+								<tr th:each="usuario : ${usuarios}">
+                  <td th:text="${usuario.username}"></td>
+                  <td th:text="${usuario.password}"></td>
+                  <td th:text="${usuario.es_activo}"></td>
+                  <td th:text="${usuario.intentos}"></td>
+                  <td>
+                    <a class="btn btn-sm btn-primary" th:href="@{/usuario/edit/{id_usuario}(id_usuario=${usuario.id})}">
+                      <i class="fas fa-pencil-alt"></i>
+                    </a>
+                    <button class="btn btn-sm btn-danger" th:attr="data-eliminar=${usuario.id}">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+								</tr>
+
+							</tbody>
+							<tfoot>
+								<tr>
+                  <tr>
+                    <th>Usuario</th>
+                    <th>Contraseña</th>
+                    <th>Activo</th>
+                    <th>Intentos</th>
+                    <th>Acciones</th>
+                  </tr>
+                </tr>
+							</tfoot>
+						</table>
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</div>
+		</div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="modalEliminar">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Eliminar Usuario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <form method="POST" th:action="@{/usuario/destroy}">
+        <div class="modal-body">
+          <input type="hidden" id="idUsuario" name="idUsuario" value>
+          <p>¿Desea eliminar el usuario?</p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger">Confirmar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+	</div>
+
+
+	<section layout:fragment="scripts">
+    <script>
+      $('[data-eliminar]').on('click', function(){
+
+        var idUsuario = $(this).data('eliminar');
+
+
+        $('#idUsuario').val(idUsuario);
+        $('#modalEliminar').modal('show');
+      })
+    </script>
+	</section>
+
+</body>
+</html>

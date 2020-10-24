@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/layout}">
+<head>
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+</head>
+
+<body>
+
+	<h1 class="m-0 text-dark" layout:fragment="titulo_seccion">Usuario</h1>
+
+	<ol class="breadcrumb float-sm-right" layout:fragment="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">Usuario</li>
+    </ol>
+
+	<div layout:fragment="content">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            Usuario
+          </div>
+
+          <form method="POST" th:action="@{/usuario/update}" th:object="${usuario}">
+            <input type="hidden" th:field="*{id}">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="exampleInputPassword1">Nombre de Usuario</label>
+              <input th:field="*{username}" type="text" class="form-control" placeholder="Ingrese su nombre de usuario">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">Contraseña</label>
+              <input th:field="*{password}" type="password" class="form-control" placeholder="Ingrese su contraseña">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">Activo</label>
+              <input th:field="*{es_activo}" type="text" class="form-control" placeholder="Ingrese su actividad">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">Intentos</label>
+              <input th:field="*{intentos}" type="text" class="form-control" placeholder="Ingrese el numero de intentos">
+            </div>
+          </div>
+
+          <div class="card-footer text-right">
+            <a th:href="@{/usuario/index}" class="btn btn-secondary mr-3">Cancelar</a>
+              <button class="btn btn-primary" type="submit" name="button">Guardar</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+	</div>
+
+
+	<section layout:fragment="scripts">
+	</section>
+
+</body>
+</html>
