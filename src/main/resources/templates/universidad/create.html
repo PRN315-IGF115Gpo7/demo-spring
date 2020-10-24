@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/layout}">
+
+<head>
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  
+</head>
+
+<body>
+	
+	<h1 class="m-0 text-dark" layout:fragment="titulo_seccion">Universidad</h1>
+
+	<ol class="breadcrumb float-sm-right" layout:fragment="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">Universidad</li>
+    </ol>
+
+
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-md-2"></div>
+				<div class="col-md-6">
+					<div class="card">
+				  <div class="card-header">
+				    Universidad
+				  </div>
+				  
+				  <form method="POST" th:action="@{/universidad/store}" th:object="${universidad}">
+				  <div class="card-body">
+				    <div class="form-group">
+					    <label for="exampleInputPassword1">Nombre</label>
+					    <input th:field="*{nombre}" type="text" class="form-control" placeholder="Ingrese el nombre">
+					</div>
+					<div class="form-group">
+					    <label for="exampleInputPassword1">Es publica</label>
+					    <input th:field="*{es_publica}" type="text" class="form-control" placeholder="Es publica? si/no">
+					</div>
+					<div class="form-group">
+					    <label for="exampleInputPassword1">Cantidad de Carreras</label>
+					    <input th:field="*{cantidad_carreras}" type="text" class="form-control" placeholder="Ingrese la cantidad de carreras">
+					</div>
+					<div class="form-group">
+					    <label for="exampleInputPassword1">Direccion</label>
+					    <input th:field="*{direccion}" type="text" class="form-control" placeholder="Ingrese la direccion">
+					</div>
+					<div class="form-group">
+					    <label for="exampleInputPassword1">Fecha de Fundacion</label>
+					    <input th:field="*{fecha_fundacion}" type="text" class="form-control" placeholder="ingrese la fecha de fundacion">
+					</div>
+					 
+				  </div>
+				<div class="card-footer text-right">
+						<a th:href="@{/universidad/index}" class="btn btn-secondary mr-3">Cancelar</a>
+						<button class="btn btn-primary"type="submit" name="button">Guardar</button>
+				</div>
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<section layout:fragment="scripts">
+	</section>
+
+</body>
+</html>

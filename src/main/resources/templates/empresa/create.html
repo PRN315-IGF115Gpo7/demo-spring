@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/layout}">
+
+<head>
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+</head>
+
+<body>
+
+	<h1 class="m-0 text-dark" layout:fragment="titulo_seccion">Empresa</h1>
+
+	<ol class="breadcrumb float-sm-right" layout:fragment="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">Empresa</li>
+    </ol>
+
+	<div layout:fragment="content">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            Empresa
+          </div>
+
+          <form method="POST" th:action="@{/empresa/store}" th:object="${empresa}">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="exampleInputPassword1">Id</label>
+              <input th:field="*{id}" type="text" class="form-control" placeholder="Ingrese su id">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">Nombre</label>
+              <input th:field="*{nombre}" type="text" class="form-control" placeholder="Ingrese su nombre">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">telefono</label>
+              <input th:field="*{telefono}" type="text" class="form-control" placeholder="Ingrese su telefono">
+            </div>
+            
+             <div class="form-group">
+              <label for="exampleInputPassword1">Direccion</label>
+              <input th:field="*{direccion}" type="text" class="form-control" placeholder="Ingrese su direccion">
+            </div>
+            
+             <div class="form-group">
+              <label for="exampleInputPassword1">Cantidad de empleados</label>
+              <input th:field="*{cantidad_empleados}" type="text" class="form-control" placeholder="Ingrese su cantidad de empleados">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">Fecha Fundacion</label>
+              <input th:field="*{fecha_fundacion}" type="text" class="form-control" placeholder="Fecha fundacion">
+            </div>
+          </div>
+
+          <div class="card-footer text-right">
+            <a th:href="@{/empresa/index}" class="btn btn-secondary mr-3">Cancelar</a>
+              <button class="btn btn-primary" type="submit" name="button">Guardar</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+	</div>
+
+
+	<section layout:fragment="scripts">
+	</section>
+
+</body>
+</html>
