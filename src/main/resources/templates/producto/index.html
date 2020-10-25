@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/layout}">
+
+<head>
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+</head>
+
+<body>
+
+	<h1 class="m-0 text-dark" layout:fragment="titulo_seccion">Producto</h1>
+
+	<ol class="breadcrumb float-sm-right" layout:fragment="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">Producto</li>
+    </ol>
+
+	<div layout:fragment="content">
+
+    <div class="row ml-3 mr-3">
+			<div class="col-md-9 offset-1">
+				<div class="card">
+	         <div class="card-header text-right">
+
+						<button class="btn btn-sm btn-primary" id="btnAgregar">
+							<i class="fas fa-plus-circle mr-1 text-white"></i>
+							<span class="text-white">Agregar Producto</span>
+						</button>
+	           <h3 class="card-title"></h3>
+	          </div>
+
+					<div class="card-body">
+						<table id="example1" class="table table-bordered table-striped">
+							<thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Margen de ganancia</th>
+                    <th>Es nacional</th>
+                    <th>fecha de registro</th>
+                    <th>Acciones</th>
+                  </tr>
+							</thead>
+							<tbody>
+
+								<tr th:each="producto : ${productos}">
+                  <td class="nombre" th:text="${producto.nombre}"></td>
+                  <td class="margen" th:text="${producto.margenGanacia}"></td>
+                  <td class="nacional" th:if="${producto.esNacional}">Sí</td>
+                  <td class="nacional" th:unless="${producto.esNacional}">No</td>
+                  <td class="fecha" th:text="${producto.fechaRegistro}"></td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" th:attr="data-editar=${producto.id}">
+                      <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger" th:attr="data-eliminar=${producto.id}">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+								</tr>
+
+							</tbody>
+							<tfoot>
+								<tr>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Margen de ganancia</th>
+                    <th>Es nacional</th>
+                    <th>fecha de registro</th>
+                    <th>Acciones</th>
+                  </tr>
+                </tr>
+							</tfoot>
+						</table>
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</div>
+		</div>
+
+    <!--Modal para crear un producto-->
+    <div class="modal" tabindex="-1" role="dialog" id="modalAgregar">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Agregar Producto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <form method="POST" th:action="@{/producto/store}" th:object="${producto}">
+        <div class="modal-body">
+
+          <div class="form-group">
+              <label for="exampleInputPassword1">Nombre</label>
+              <input th:field="*{nombre}" type="text" class="form-control" placeholder=" Nombre">
+          </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">Margen Ganancia</label>
+              <input th:field="*{margenGanacia}" type="text" class="form-control" placeholder="Margen de gananciacia">
+            </div>
+
+            <div class="form-group">
+              <div class="form-check">
+              <input th:field="*{esNacional}" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Es Producto Nacional
+              </label>
+            </div>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">Fecha de Registro</label>
+              <input th:field="*{fechaRegistro}" type="date" class="form-control">
+            </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+    <!--Modal para editar un producto-->
+    <div class="modal" tabindex="-1" role="dialog" id="modalEditar">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar Producto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <form method="POST" th:action="@{/producto/update}" th:object="${producto}">
+        <div class="modal-body">
+          <input id="idProducto" type="hidden" th:field="*{id}">
+          <div class="form-group">
+              <label>Nombre</label>
+              <input id="nombre-p" th:field="*{nombre}" type="text" class="form-control" placeholder=" Nombre">
+          </div>
+
+            <div class="form-group">
+              <label>Margen Ganancia</label>
+              <input id="margen" th:field="*{margenGanacia}" type="text" class="form-control" placeholder="Margen de gananciacia">
+            </div>
+
+            <div class="form-group">
+              <div class="form-check">
+              <input id="nacional" th:field="*{esNacional}" class="form-check-input" type="checkbox" value="">
+              <label class="form-check-label" for="nacional">
+                Es Producto Nacional
+              </label>
+            </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+	</div>
+
+
+	<section layout:fragment="scripts">
+    <script>
+
+      //Para Crear un producto
+      $('#btnAgregar').on('click', function(){
+
+        //Lanzar modal
+        $('#modalAgregar').modal('show');
+      })
+      //FIN-Crear un producto
+
+
+      //Para editar un producto
+      $('[data-editar]').on('click', function(){
+
+        //Obteniendo datos de la tabla
+        var id = $(this).data('editar');
+        var nombre = $(this).parent().siblings('td.nombre').text();
+        var margen = $(this).parent().siblings('td.margen').text();
+        var nacional = $(this).parent().siblings('td.nacional').text();
+
+        //Validando valor del checkbox
+        val_checkbox = false;
+        if(nacional == 'Sí'){
+          val_checkbox = true;
+        }
+
+        //Asignando datos a la modal
+        $('#idProducto').val(id);
+        $('#nombre-p').val(nombre);
+        $('#margen').val(margen);
+        $('#nacional').prop('checked', val_checkbox);
+
+        //Lanzar modal
+        $('#modalEditar').modal('show');
+      })
+      //FIN-Editar un producto
+
+    </script>
+	</section>
+
+</body>
+</html>
